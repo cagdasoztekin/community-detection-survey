@@ -8,3 +8,5 @@ ws.tex : is the latex source of the survey
 Group_4*.pdf : is the original pdf file
 
 so-far.pdf : is the pdf file of the current version of the latex source
+
+Use sharelatex.com to easily modify and compile the latex source.
