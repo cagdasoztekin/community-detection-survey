@@ -14,11 +14,7 @@
 
 \title{Bilkent University Fall 2015 \\ ~\\
 A SURVEY ON COMMUNITY DETECTION ALGORITHMS}
-<<<<<<< HEAD
 \author{ %Group 4 \\
-=======
-\author{Group 4 \\
->>>>>>> 6e1fbdc5284bec62b1e1be44d3f97ffe7619f68e
 Alican Büyükçakır \\ Çağdaş Öztekin \\
 Fatih Karaoğlanoğlu \\
 Kaan Mert Berkem}
@@ -50,45 +46,24 @@ Graphs, community detection, clusters, partitioning
 \section{Introduction and Problem Definition}
 
 Graphs have been studied since the 18th century where Leonhard Euler first tried to solve Königsberg Bridge Problem\cite{euler}. Nowadays, they help us to construct seemingly complex connections between massive amounts of data where the nodes (vertices) of the graph represent entities and the edges between the nodes represent connections/interactions between the nodes. The analysis of the graphs became especially important in the late 20th century after understanding that the graphs can be used in the analysis of molecular biology, social networks and any other information system that became empirically available after the computer revolution.\\
-<<<<<<< HEAD
 
 Communities (community structures) are the set of nodes in a graph that are similar to each other and dissimilar to the outside of this set. The real networks are not random graphs (i.e. Erdös-Renyi graphs. See the related section in the paper) and they follow the Power Law\cite{fortunato}; meaning that there are a lot of vertices in a graph that have low degrees and there are very few vertices that have large degrees. Due to this fact, we observe multiple vertices clustered in groups, created by this inhomogeneity. Such structures are called community structures (communities), clusters or modules. The community concept is a vaguely defined concept and hence, a partition of a given community is not something absolute but something interpreted. Different community detection algorithms or the same algorithm with different parameters may result in different partitions in a graph.\\
 
 By analyzing a network of protein-protein interactions where the vertices are proteins and the edges are interactions between the proteins, we can understand the subset of proteins that are specialized in one certain job and detect functional modules. Similarly, given a social network (e.g.network of one’s friends in Facebook), we can identify the subgroups of friends that have gone to the same school, that are colleagues or that have the same hobbies as one. \\
-=======
-
-Communities (community structures) are the set of nodes in a graph that are similar to each other and dissimilar to the outside of this set. The real networks are not random graphs (i.e. Erdös- Renyi graphs. See the related section in the paper) and they follow the Power Law\cite{fortunato}; meaning that there are a lot of vertices in a graph that have low degrees and there are very few vertices that have large degrees. Due to this fact, we observe multiple vertices clustered in groups, created by this inhomogeneity. Such structures are called community structures (communities), clusters or modules. \\
-
-The community concept is a vaguely defined concept and hence, a partition of a given community is not something absolute but something interpreted. Different community detection algorithms or the same algorithm with different parameters may result in different partitions in a graph.\\
-
-Fig.1. Drosophila Protein Interaction Map \cite{protein} \\
-
-By analyzing a network of protein-protein interactions where the vertices are proteins and the edges are interactions between the proteins, we can understand the subset of proteins that are specialized in one certain job\cite{protein} and detect functional modules. Similarly, given a social network (e.g.network of one’s friends in Facebook), we can identify the subgroups of friends that have gone to the same school, that are colleagues or that have the same hobbies as one. \\
->>>>>>> 6e1fbdc5284bec62b1e1be44d3f97ffe7619f68e
 
 In this survey, we will first introduce the basics and concepts of the community detection. Then we will examine most widely-used algorithms in the field in detail and lastly, discuss the recent developments and the open research problems in the field. \\
 
 \section{Basics and Definitions}
 
-<<<<<<< HEAD
 First of all, the identification of communities is possible only if a graph is sparse (i.e. the number of edges m is of the order number of nodes n). If the number of edges is too large compared to the number of nodes, it means that the edges of the graph are distributed too homogeneously and the graph is too connected to encounter a community\cite{fortunato}. \\
-=======
-First of all, the identification of communities is possible only if a graph is sparse (i.e. the number of edges m is of the order number of nodes n). If the number of edges is too large compared to the number of nodes, it means that the edges of the graph are distributed too homogenously and the graph is too connected to encounter a community\cite{fortunato}. \\
->>>>>>> 6e1fbdc5284bec62b1e1be44d3f97ffe7619f68e
 
 Also, it is not necessarily the case that a vertex is in exclusively one community. In real life, it frequently happens that a node is in multiple communities such as a person in a social network being in a community with his college friends and his colleagues at the same time. Finding overlapping communities is also a subject that is studied under community detection but the algorithms for finding overlapping communities is relatively new and still being developed. In this paper, the algorithms we will discuss will be the ones that will not consider overlapping communities. However, in the section ‘Recent Developments’, we will mention about detection of overlapping communities with focusing on mostly the most well-known method on the subject, namely \textbf{K-Clique Percolation Method}. \\
 
-<<<<<<< HEAD
 To understand how well a graph is partitioned into communities, we first need to have a ‘base graph’ where there is no way to have communities so that we can compare and contrast our partitioned graph with respect to this base graph. For this, Erdös-Renyi Graphs are used. An \textbf{Erdös-Renyi Graph}, is a ‘random graph’ where any two vertices have the same probability to be adjacent\cite{erdos}. Thus, the expectation from an Erdös-Renyi Graph is that there should be no biased linking between two set of vertices and therefore no community structures. Using this information, \textbf{the null model} of a graph is defined. \\
 
 \subsection{Null Model}
 
 Null Model of a graph is an Erdös-Renyi Graph that has the same number of vertices with the original graph with some structural constraints (such as retained number of edges that are going out from each vertex). The most widely used null model is the one that is introduced by Newman, which will be discussed under Modularity Optimization Algorithm and Louvain Method. \\
-=======
-To understand how well a graph is partitioned into communities, we first need to have a ‘base graph’ where there is no way to have communities so that we can compare and contrast our partitioned graph with respect to this base graph. For this, Erdös-Renyi Graphs are used. An Erdös- Renyi Graph, is a ‘random graph’ where any two vertices have the same probability to be adjacent\cite{erdos}. Thus, the expectation from an Erdös-Renyi Graph is that there should be no biased linking between two set of vertices and therefore no community structures. Using this information, the null model of a graph is defined. \\
-
-\subsection{Null Model}
->>>>>>> 6e1fbdc5284bec62b1e1be44d3f97ffe7619f68e
 
 Newman’s null model is the original graph with edges rewired randomly so that the expected degree of each vertex is still the same compared to the original graph. This definition also helped developing the notion of modularity. The benchmark of the community structure then became the question of ‘how differently the links in the original graph distributed with respect to any random graph that would be created by the original graph’s structure?’ \\
 
@@ -98,12 +73,7 @@ Quality Function is a function that maps a number to every partition of the grap
 
 An example of a quality function for the graph G with partition P is follows: \\
 
-<<<<<<< HEAD
 \[ Q\left( G, P \right) = \frac{ \#\ \text{intra-community edges}  }{\text{total\ $\#$\ edges }  }   \] \\
-=======
-\[ Q\left( G, P \right)=\frac{number of intra-community edges}{total number of edges} \]\\
-
->>>>>>> 6e1fbdc5284bec62b1e1be44d3f97ffe7619f68e
 
 Intra-community edge means the edge that is within the community. The opposite of this is called inter-community edge which means an edge that connects two communities. In this function, we count the number of intra-community edges because $\left( \text{ \#\ intra-community edges}\right) > \left(\text{ \#\ inter-community edges}\right)$ in a graph with strong community structure. This function also called \textbf{coverage} and it yields 1 where all the clusters are disconnected from each other. Notice that one needs to know which vertex is in which community beforehand to have this as his testing function.
 Modularity is another quality function and perhaps the most well-known one. \\
@@ -116,14 +86,10 @@ This function and what that means will be exclusively examined in Louvain’s Me
 
 In Fig.1, as can be seen below, the horizontal red line (cut line) indicates the cut level. Since there are 4 intersecting lines with the cut line, all the children of those lines are considered to be in the same community. \\
 
-<<<<<<< HEAD
 \begin{center}
     \includegraphics[scale=0.2]{dendrogram.png} \\
     Fig.1. Dendrogram cut example
 \end{center}
-=======
-Fig.2. Dendrogram cut example 5 \\
->>>>>>> 6e1fbdc5284bec62b1e1be44d3f97ffe7619f68e
 
 \section{Community Detection Algorithms}
 
@@ -166,12 +132,6 @@ Calculating the betweenness score is done from scratch after each removal, so it
     \label{fig:awesome_image}
 \end{sidewaysfigure}
 
-<<<<<<< HEAD
-=======
-Fig.4. Graph after BFS starting from vertex E 6 \\
-
-Fig.5. Computing Edge-Betweenness contribution for vertex E 7 \\
->>>>>>> 6e1fbdc5284bec62b1e1be44d3f97ffe7619f68e
 
 Due to the costly calculations of edge-betweenness after each removal of an edge with cubic complexity in total $O\left(|V||E|^2 \right)$, this algorithm is feasible for at most around a thousand vertices and a few thousand edges in today’s computational power. Also, this algorithm does not provide the information on where to cut the dendrogram; or in other words, the optimal point to stop removing the edges. One needs to define a quality function and check its value at each level of the dendrogram so that the maximum value of the quality function can be found. \\
 
@@ -228,16 +188,10 @@ Another downside of this algorithm is that it does not necessarily converge into
     Fig.4. After moment t, the labels on the left and right will be swapped at each iteration. The method is inconclusive. \cite{raghavan}
 \end{center}
 
-<<<<<<< HEAD
-=======
- Fig.6. After moment t, the labels on the left and right will be swapped at each iteration. The method is inconclusive \cite{raghavan}. \\
-
->>>>>>> 6e1fbdc5284bec62b1e1be44d3f97ffe7619f68e
 To test how good the community detection algorithms are, there is a famous graph called Zachary’s Karate Club graph in which there are overlapping communities and high number of nodes whose community classifications are hard and ambiguous. \\
 
 Here are the different results of Label Propagation Algorithm on Zachary’s Karate Club graph from the original paper of Raghavan et al.: \\
 
-<<<<<<< HEAD
 \begin{center}
     \includegraphics[scale=0.5]{labelPropKarateClub.png} \\
     Fig.5. Label Propagation Method on Zachary’s Karate Club yielding different results. The vertices with the same color are in the same community\cite{raghavan}.
@@ -245,11 +199,6 @@ Here are the different results of Label Propagation Algorithm on Zachary’s Kar
 
 
 When the algorithm terminates, two or more disconnected groups of nodes may have the same label. This happens when two or more neighbors of a node receive its label and pass the labels in different directions, which ultimately leads to different communities adopting the same label. In such cases, after the algorithm terminates, one can run a breadth-first search on the sub-networks of each individual group to separate the disconnected communities. This requires an overall time of O($m+n$) where m is the number of vertices and n is the number of edges. When aggregating solutions, disconnected groups within communities are rarely found. \\
-=======
-  Fig.7. Label Propagation Method on Zachary’s Karate Club yielding different results. The vertices with the same color are in the same community\cite{raghavan}. \\
-
-When the algorithm terminates, two or more disconnected groups of nodes may have the same label. This happens when two or more neighbors of a node receive its label and pass the labels in different directions, which ultimately leads to different communities adopting the same label. In such cases, after the algorithm terminates, one can run a breadth-first search on the subnetworks of each individual group to separate the disconnected communities. This requires an overall time of O(m +n) where m is the number of vertices and n is the number of edges. When aggregating solutions, disconnected groups within communities are rarely found. \\
->>>>>>> 6e1fbdc5284bec62b1e1be44d3f97ffe7619f68e
 
 \subsection{Louvain Method (Blondel et al.) (2008)}
 
@@ -279,7 +228,6 @@ The algorithm can be expressed in three steps, which are repeated until converge
 \item Standing for all the vertices belonging to the same community, create a \textbf{supervertex} to replace the community while maintaining all the edges to the other supervertices. Maintain the number of edges from the all the vertices of community C to all the vertices of community D by weighing the edges between the supervertices of the new graph for the modularity gain calculation in the next iteration. 
 \end{enumerate}
 
-<<<<<<< HEAD
 
 Louvain Method has a bottom-up approach, similar to the Walktrap Algorithm which discussed above, where each node is initially marked to be a unique community and communities are formed with the merging of other communities during the following iterations of the algorithm such that each merge operation can be traced back to reveal a dendrogram structure of the communities to detect the different communities at desired levels. \\
 
@@ -289,22 +237,6 @@ Louvain Method has a bottom-up approach, similar to the Walktrap Algorithm which
 \end{center}
 
 One important remark about the algorithm is the order the vertices are selected to be merged with a community directly affects the result, there could be some vertices between strong community components, such vertices may be decided to be added to different communities on the basis of how many vertices have already been merged in the respective communities. In such cases the algorithm may yield different results on different runs. \\
-=======
-( ) is the delta function, also called Kronecker’s Delta which is simply 1 when two vertices are
-in the same community and 0 otherwise. It tells us that when the term next to it, i.e. ( ) is
-positive, we should take vertex j and put it into the community of vertex i so that the total modularity shall increase; whereas if that term is negative, the two vertices should stay separated.
-is a normalizing constant which makes Q between the values -1 and 1.
-In the way that it tries to maximize the modularity function of the graph, Louvain Method is very similar to another greedy algorithm, proposed by Clauset et al. in 2004, but differs in the way while Clauset et al.\cite{clauset}. method retains the modularity variations of each vertex pair in a max-heap, Louvain Method merges nodes belonging to the same community into a one “supervertex” at the cost of accuracy and stability\cite{blondel}.
-The algorithm can be expressed in three steps repeated until convergence as follows: \\
-
-1. Initialize each vertex to be a distinct community. \\
-2. For each vertex A, consider each of the adjacent vertices to A and evaluate the modularity gain from removing A from its original community and including A in the community of the adjacent vertex. Find the vertex adjacent to A that maximizes the modularity gain and add A to its community. \\
-3. Standing for all the vertices belonging to the same community, create a supervertex to replace the community while maintaining all the edges to the other supervertices. Maintain the number of edges from the all the vertices of community C to all the vertices of community D by weighing the edges between the supervertices of the new graph for the modularity gain calculation in the next iteration. \\
-
-Louvain Method has a bottom-up approach, similar to the Walktrap Algorithm which discussed above, where each node is initially marked to be a unique community and communities are formed with the merging of other communities during the following iterations of the algorithm such that each merge operation can be traced back to reveal a dendrogram structure of the communities to detect the different communities at desired levels. \\
-
-Fig.8. Consecutive Iterations of Louvain Method\cite{blondel} \\
->>>>>>> 6e1fbdc5284bec62b1e1be44d3f97ffe7619f68e
 
 Nonetheless, the algorithm’s hastiness to evaluate the fate of a vertex enables it to detect the communities in very large graphs that other algorithms fail to evaluate in tolerable lengths of time. The algorithm’s complexity is dependent on the number of vertices that are evaluated with their adjacent vertices for modularity gain, however, the number of vertices the algorithm has to evaluate depends on the structure of the graph itself effective from the second iteration where the supervertices, whose number is not known, are evaluated. \\
 
@@ -338,11 +270,7 @@ The motivation behind the algorithm is that the community structures tend to hav
     Fig.9. Zachary’s Karate Club partitioning with CPM 
 \end{center}
 
-<<<<<<< HEAD
 One must keep in mind that the number K here cannot be too high. Mostly K=3 to 5 are used. Finding the first K-cliques in the graph is done by brute-force and as the number of vertices in the community increases, the time required to find all K-cliques in the graph becomes exponentially harder. In fact, the algorithm’s complexity is $O \left( 2^{n}\right)$ where n is the number of vertices \cite{eleven}. In fact, finding the maximum K-clique in a given graph is an NP-Complete problem \cite{clique}. \\
-=======
-One must keep in mind that the number K here cannot be too high. Mostly K=3 to 5 are used. Finding the first K-cliques in the graph is done by brute-force and as the number of vertices in the community increases, the time required to find all K-cliques in the graph becomes exponentially harder. In fact, the algorithm’s complexity is ( ) where n is the number of vertices \cite{eleven}. In fact, finding the maximum K-clique in a given graph is an NP-Complete problem \cite{clique}. \\
->>>>>>> 6e1fbdc5284bec62b1e1be44d3f97ffe7619f68e
 
 Finding the overlapping communities is still an ongoing research and many papers are being published each year to evaluate the problem and to find novel techniques to tackle the problem. For instance, Community-Affiliation Graph Model is developed by Yang-Leskovec in 2012 to model the overlapping communities and find a way to classify the vertices in overlapping communities \cite{overlapping}. \\
 
@@ -361,11 +289,6 @@ In recent years, new algorithms having promising results with almost linear runn
 
 \bibitem{fortunato} Fortunato, S. (2010) "Community detection in graphs." Physics Reports 486.3. 75-174.
 
-<<<<<<< HEAD
-=======
-\bibitem{protein} Guruharsha, K. G., Rual, J. F., Zhai, B., Mintseris, J., Vaidya, P., Vaidya, N., ... \& McKillip, E. (2011). A protein complex network of Drosophila melanogaster. Cell, 147(3), 690-703.
-
->>>>>>> 6e1fbdc5284bec62b1e1be44d3f97ffe7619f68e
 \bibitem{erdos} Erdős, P., \& Rényi, A. (1961). On the strength of connectedness of a random graph. Acta Mathematica Hungarica, 12(1-2), 261-267.
 
 \bibitem{clauset} Clauset, A., Newman, M. E., \& Moore, C. (2004). Finding community structure in very large networks. Physical review E, 70(6), 066111.
