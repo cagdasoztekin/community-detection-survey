@@ -4,12 +4,12 @@ Our term project titled "A Survey on Community Detection Algorithms" for CS425 -
 
 Index:
 
-*ws.tex : is the latex source of the survey
+* ws.tex : is the latex source of the survey
 
-*Group_4*.pdf : is the original pdf file we submitted for the course project
+* Group_4*.pdf : is the original pdf file we submitted for the course project
 
-*ws.pdf : is the pdf file compiled using the latex source
+* ws.pdf : is the pdf file compiled using the latex source
 
-*images: folder containing the images used in the document
+* images: folder containing the images used in the document
 
 
